@@ -1,8 +1,8 @@
-package com.example.thecocktail.model
+package com.example.thecocktail.domain
 
 import com.squareup.moshi.Json
 
-data class Drinks(
+data class Drink(
     val idDrink: String, //"13024"
     val strDrink: String, //"Sweet Sangria"
     val strDrinkAlternate: String?, //null
@@ -71,40 +71,40 @@ data class Drinks(
     val strImageAttribution: String?, //null
     val strCreativeCommonsConfirmed: String, //"No"
     val dateModified: String, //"2016-07-19 11:30:28"
-) {
-    fun Drinks.convertByCocktail(): Cocktail {
-        val ingredients = mutableListOf<String>()
-        val allIngredients = listOf<String?>(
-            strIngredient1,
-            strIngredient2,
-            strIngredient3,
-            strIngredient4,
-            strIngredient5,
-            strIngredient6,
-            strIngredient7,
-            strIngredient8,
-            strIngredient9,
-            strIngredient10,
-            strIngredient11,
-            strIngredient12,
-            strIngredient13,
-            strIngredient14,
-            strIngredient15
-        )
+)
 
-        for (i in 0..14) {
-            allIngredients[i]?.let {
-                ingredients.add(it)
-            }
+fun Drink.convertByCocktail(): Cocktail {
+    val ingredients = mutableListOf<String>()
+    val allIngredients = listOf<String?>(
+        strIngredient1,
+        strIngredient2,
+        strIngredient3,
+        strIngredient4,
+        strIngredient5,
+        strIngredient6,
+        strIngredient7,
+        strIngredient8,
+        strIngredient9,
+        strIngredient10,
+        strIngredient11,
+        strIngredient12,
+        strIngredient13,
+        strIngredient14,
+        strIngredient15
+    )
+
+    for (i in 0..14) {
+        allIngredients[i]?.let {
+            ingredients.add(it)
         }
-
-        return Cocktail(
-            id = idDrink,
-            name = strDrink,
-            image = strDrinkThumb,
-            category = strCategory,
-            favorite = false,
-            ingredients = ingredients
-        )
     }
+
+    return Cocktail(
+        id = idDrink,
+        name = strDrink,
+        image = strDrinkThumb,
+        category = strCategory,
+        favorite = false,
+        ingredients = ingredients
+    )
 }

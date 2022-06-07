@@ -1,4 +1,4 @@
-package com.example.thecocktail.model
+package com.example.thecocktail.domain
 
 data class Cocktail(
     val id: String,
